@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-// import {Card,Chart,CountryPicker} from './components'
+import {Cardd,Chart,CountryPicker} from './components'
 import { fetchedData } from "./components/api/Api";
-import "./App.module.css";
+import "./components/App.module.css";
 class App extends Component {
   state = {
     data: [],
@@ -14,10 +14,16 @@ class App extends Component {
   }
 
   render() {
-    return <div className="App">
+    const {data} = this.state;
+    return (
+      <div>
+        <Cardd data={data}/>
+        
+       
       
-    </div>;
+      
+      </div>
+    );
   }
 }
-
 export default App;
