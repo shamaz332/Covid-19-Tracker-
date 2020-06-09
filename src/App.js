@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Cardd,Chart,CountryPicker} from './components'
+import {Cardd,Chart} from './components'
 import Map from './components/Map/Map'
 import { fetchedData } from "./components/api/Api";
 import "./components/App.module.css";
