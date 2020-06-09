@@ -32,4 +32,4 @@ jobs:
     - name: Install Surge
       run: npm install -g surge
     - name: Deploy React App
-      run: surge ./build http://bootcamp-project-1.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+      run: surge ./build http://bootcampp-project-1.surge.sh --token ${{ secrets.SURGE_TOKEN }}
