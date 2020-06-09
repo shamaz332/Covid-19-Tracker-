@@ -19,7 +19,7 @@ class App extends Component {
       <div>
         <Cardd data={data}/>
         
-       
+       <Chart   data={data}/>
       
       
       </div>
