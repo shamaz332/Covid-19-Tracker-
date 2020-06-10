@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Cardd, Chart, CountryPicker } from "./components";
-// import Map from './components/Map/Map'
-import { fetchedData, countries } from "./components/api/Api";
+import Map from './components/Map/Map'
+import { fetchedData} from "./components/api/Api";
 import styles from "./components/App.module.css";
 class App extends Component {
   state = {
@@ -11,14 +11,12 @@ class App extends Component {
 
   async componentDidMount() {
     const data = await fetchedData();
-    console.log(data);
     this.setState({ data: data });
   }
 
   handleCountryChange = async (country) => {
     const data = await fetchedData(country);
     this.setState({ data: data,country:country });
-  console.log(country)
   };
 
   render() {
@@ -29,8 +27,7 @@ class App extends Component {
         <Cardd data={data} />
         <CountryPicker handleCountryChange={this.handleCountryChange} />
         <Chart data={data} country={country}/>
-
-        {/* <Map/> */}
+        <Map/>
       </div>
     );
   }

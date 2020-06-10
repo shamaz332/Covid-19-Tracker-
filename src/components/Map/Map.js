@@ -1,26 +1,35 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import axios from "axios";
+
 class Map extends Component {
+  constructor(props) {
+    super(props);
 
-
-    state = {
+    this.state = {
       countries: [],
     };
+  }
   
   componentDidMount() {
-    axios.get("https://corona.lmao.ninja/v2/countries")
+    axios
+      .all([
+        axios.get("https://corona.lmao.ninja/v2/all"),
+        axios.get("https://corona.lmao.ninja/v2/countries"),
+      ])
 
       .then((response) => {
-        this.setState({ countries: response.data });
-        console.log(response.data);
+        this.setState({ patient: response[0].data });
+        this.setState({ countries: response[1].data });
+        // console.log(response.data);
       })
       .catch((err) => {
         console.log("err");
       });
   }
-
+ 
   render() {
+  
     const allCountry = this.state.countries.map((country, i) => {
       return (
         <div
@@ -37,11 +46,7 @@ class Map extends Component {
             borderRadius: "30%",
           }}
         >
-          <img
-            height="10px"
-            src={country.countryInfo.flag}
-            alt="country flag"
-          />
+          <img height="10px" src={country.countryInfo.flag} alt="flags" />
           <br></br>
           {country.cases}
         </div>
@@ -49,7 +54,7 @@ class Map extends Component {
     });
 
     return (
-      <div>
+
         <div style={{ height: "100vh", width: "100%" }}>
           <GoogleMapReact
             bootstrapURLKeys={{
@@ -61,7 +66,7 @@ class Map extends Component {
             {allCountry}
           </GoogleMapReact>
         </div>
-      </div>
+   
     );
   }
 }
