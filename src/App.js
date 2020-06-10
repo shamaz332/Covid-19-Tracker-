@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import {Cardd,Chart} from './components'
-import Map from './components/Map/Map'
+// import Map from './components/Map/Map'
 import { fetchedData } from "./components/api/Api";
-import "./components/App.module.css";
+import styles from "./components/App.module.css";
 class App extends Component {
   state = {
     data: [],
@@ -17,12 +17,12 @@ class App extends Component {
   render() {
     const {data} = this.state;
     return (
-      <div>
+      <div className={styles.container}>
         <Cardd data={data}/>
         
        <Chart   data={data}/>
       
-      <Map/>
+      {/* <Map/> */}
       </div>
     );
   }
