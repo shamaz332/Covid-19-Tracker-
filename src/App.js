@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import {Cardd,Chart} from './components'
+import { Cardd, Chart, CountryPicker } from "./components";
 // import Map from './components/Map/Map'
-import { fetchedData } from "./components/api/Api";
+import { fetchedData, countries } from "./components/api/Api";
 import styles from "./components/App.module.css";
 class App extends Component {
   state = {
     data: [],
+    country: "",
   };
 
   async componentDidMount() {
@@ -14,15 +15,22 @@ class App extends Component {
     this.setState({ data: data });
   }
 
+  handleCountryChange = async (country) => {
+    const data = await fetchedData(country);
+    this.setState({ data: data,country:country });
+  console.log(country)
+  };
+
   render() {
-    const {data} = this.state;
+    const { data,country } = this.state;
     return (
       <div className={styles.container}>
-        <Cardd data={data}/>
-        
-       <Chart   data={data}/>
-      
-      {/* <Map/> */}
+        <img className={styles.image} src="https://i.ibb.co/7QpKsCX/image.png" alt="Corona"/>
+        <Cardd data={data} />
+        <CountryPicker handleCountryChange={this.handleCountryChange} />
+        <Chart data={data} country={country}/>
+
+        {/* <Map/> */}
       </div>
     );
   }
